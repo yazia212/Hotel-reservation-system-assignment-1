@@ -35,6 +35,11 @@ class Customer:
     def set_credit_card(self, credit_card):
         self.__credit_card = credit_card
 
+    # Placeholder for future functionality: updating customer information
+    def update_customer_info(self):
+        """This function will allow customers to update their personal information."""
+        pass
+
 
 # Class for Room
 class Room:
@@ -70,6 +75,11 @@ class Room:
     def set_availability(self, availability):
         self.__availability = availability
 
+    # Placeholder for future functionality: reserving a room
+    def reserve_room(self):
+        """This function will handle room reservation processes."""
+        pass
+
 
 # Class for Reservation
 class Reservation:
@@ -104,6 +114,11 @@ class Reservation:
 
     def set_price(self, price):
         self.__price = price
+
+    # Placeholder for future functionality: canceling a reservation
+    def cancel_reservation(self):
+        """This function will handle reservation cancellation."""
+        pass
 
 
 # Class for Payment
@@ -141,6 +156,11 @@ class Payment:
         else:
             print("Payment already processed.")
 
+    # Placeholder for future functionality: refund processing
+    def process_refund(self):
+        """This function will handle refund processes."""
+        pass
+
 
 # Testing the classes with updated customer names and invalid cases
 
@@ -169,3 +189,5 @@ print(f"Reservation Confirmation Number: {reservation1.get_confirmation_number()
 payment1 = Payment("Credit Card", 100.0, "pending")
 payment1.process_payment()  # Should succeed
 payment1.process_payment()  # Already processed (Bad case)
+
+    d
