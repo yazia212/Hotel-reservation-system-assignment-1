@@ -189,5 +189,3 @@ print(f"Reservation Confirmation Number: {reservation1.get_confirmation_number()
 payment1 = Payment("Credit Card", 100.0, "pending")
 payment1.process_payment()  # Should succeed
 payment1.process_payment()  # Already processed (Bad case)
-
-    d
