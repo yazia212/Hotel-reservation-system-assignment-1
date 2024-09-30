@@ -35,9 +35,9 @@ class Customer:
     def set_credit_card(self, credit_card):
         self.__credit_card = credit_card
 
-    # Placeholder for future functionality: updating customer information
+    # Placeholder function with pass
     def update_customer_info(self):
-        """This function will allow customers to update their personal information."""
+        # This function should handle customer info updates in the future
         pass
 
 
@@ -75,19 +75,21 @@ class Room:
     def set_availability(self, availability):
         self.__availability = availability
 
-    # Placeholder for future functionality: reserving a room
+    # Placeholder function with pass
     def reserve_room(self):
-        """This function will handle room reservation processes."""
+        # This function should handle room reservation logic in the future
         pass
 
 
 # Class for Reservation
 class Reservation:
-    def __init__(self, dates, room_type, confirmation_number, price):
+    def __init__(self, dates, room_type, confirmation_number, price, nights, number_of_rooms):
         self.__dates = dates
         self.__room_type = room_type
         self.__confirmation_number = confirmation_number
         self.__price = price
+        self.__nights = nights
+        self.__number_of_rooms = number_of_rooms
 
     # Getters
     def get_dates(self):
@@ -102,6 +104,12 @@ class Reservation:
     def get_price(self):
         return self.__price
 
+    def get_nights(self):
+        return self.__nights
+
+    def get_number_of_rooms(self):
+        return self.__number_of_rooms
+
     # Setters
     def set_dates(self, dates):
         self.__dates = dates
@@ -115,18 +123,25 @@ class Reservation:
     def set_price(self, price):
         self.__price = price
 
-    # Placeholder for future functionality: canceling a reservation
+    def set_nights(self, nights):
+        self.__nights = nights
+
+    def set_number_of_rooms(self, number_of_rooms):
+        self.__number_of_rooms = number_of_rooms
+
+    # Placeholder function with pass
     def cancel_reservation(self):
-        """This function will handle reservation cancellation."""
+        # This function should handle reservation cancellation in the future
         pass
 
 
 # Class for Payment
 class Payment:
-    def __init__(self, method, total_amount, status):
+    def __init__(self, method, total_amount, status, taxes_fees):
         self.__method = method
         self.__total_amount = total_amount
         self.__status = status
+        self.__taxes_fees = taxes_fees
 
     # Getters
     def get_method(self):
@@ -138,6 +153,9 @@ class Payment:
     def get_status(self):
         return self.__status
 
+    def get_taxes_fees(self):
+        return self.__taxes_fees
+
     # Setters
     def set_method(self, method):
         self.__method = method
@@ -148,6 +166,9 @@ class Payment:
     def set_status(self, status):
         self.__status = status
 
+    def set_taxes_fees(self, taxes_fees):
+        self.__taxes_fees = taxes_fees
+
     # Method to process payment
     def process_payment(self):
         if self.__status == "pending":
@@ -156,36 +177,41 @@ class Payment:
         else:
             print("Payment already processed.")
 
-    # Placeholder for future functionality: refund processing
+    # Placeholder function with pass
     def process_refund(self):
-        """This function will handle refund processes."""
+        # This function should handle refund process in the future
         pass
 
 
-# Testing the classes with updated customer names and invalid cases
+# Updated Test Case - Filling in Reservation Details
+customer1 = Customer("Sara Ahmed", "sara@gmail.com", "1234567890", "Mastercard 9904")
+room1 = Room(101, "Queen Bed", 329.95, True)  # Price in AED
+reservation1 = Reservation("2024-09-30", "Queen Bed", 52523687, 329.95, 2, 1)
+payment1 = Payment("Mastercard", 659.90, "pending", 21.58)
 
-# Valid Customer (Good case)
-customer1 = Customer("Sara Ahmed", "sara@gmail.com", "1234567890", "1111-2222-3333-4444")
-customer2 = Customer("Ali Mohamed", "ali@yahoo.com", "0987654321", "5555-6666-7777-8888")
-customer3 = Customer("Alyia Saif", "alyia@icloud.com", "9876543210", "9999-0000-1111-2222")
+# Printing out reservation details similar to the example image
+print("\nYour Reservation Is Confirmed")
+print(f"Your Name: {customer1.get_name()}")
+print(f"Your Email: {customer1.get_email()}")
+print(f"Hotel Confirmation Number: {reservation1.get_confirmation_number()}")
 
-# Test for invalid email (Bad case)
-customer1.set_email("saragmail.com")  # Invalid email
+print("\nHotel in Abu Dhabi")
+print("Sheikh Zayed Road, Abu Dhabi, UAE")
+print("Phone: 02-555-5555")
+print(f"Check-In: {reservation1.get_dates()}")
+print(f"Room Type: {reservation1.get_room_type()}")
+print(f"Room Number: {room1.get_room_number()}")
+print(f"Nights: {reservation1.get_nights()}")
+print(f"Number of Rooms: {reservation1.get_number_of_rooms()}")
 
-# Print valid outputs
-print(f"Customer Name: {customer1.get_name()}, Email: {customer1.get_email()}")
-print(f"Customer Name: {customer2.get_name()}, Email: {customer2.get_email()}")
-print(f"Customer Name: {customer3.get_name()}, Email: {customer3.get_email()}")
+print("\nSummary of Charges")
+print(f"Billing Name: {customer1.get_name()}")
+print(f"Credit Card: {customer1.get_credit_card()}")
+print(f"Room Cost (per night): AED {room1.get_price()}")
+print(f"Room Subtotal: AED {reservation1.get_price() * reservation1.get_nights()}")
+print(f"Taxes and Fees: AED {payment1.get_taxes_fees()}")
+print(f"Total Charges: AED {reservation1.get_price() * reservation1.get_nights() + payment1.get_taxes_fees()}")
+payment1.process_payment()
 
-# Valid Room (Good case)
-room1 = Room(101, "Single", 100.0, True)
-print(f"Room Number: {room1.get_room_number()}, Type: {room1.get_room_type()}, Price: {room1.get_price()}")
 
-# Reservation (Good case)
-reservation1 = Reservation("2023-09-30", "Single", 12345, 100.0)
-print(f"Reservation Confirmation Number: {reservation1.get_confirmation_number()}, Total Price: {reservation1.get_price()}")
 
-# Payment (Good and Bad case)
-payment1 = Payment("Credit Card", 100.0, "pending")
-payment1.process_payment()  # Should succeed
-payment1.process_payment()  # Already processed (Bad case)
